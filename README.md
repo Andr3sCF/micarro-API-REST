@@ -10,16 +10,10 @@ npm install
 npm init -y
 ```
 ## Instalar dependencias
-#### dotenv para manejar credenciales, variables de entorno
-#### express para el servidor
-#### modulo para conexion a BD
 ```
-npm i dotenv express promise-mysql uuid
+npm i dotenv express promise-mysql uuid bcryptjs cors jsonwebtoken
 ```
 ## Instalar dependencias de desarrollo
-#### babel
-#### morgan para ver en consola lo que se esta haciendo(get post put delete)
-#### nodemon para no tener que estar inicializando el servidor siempre
 ```
 npm i @babel/cli @babel/core @babel/node @babel/preset-env morgan nodemon -D
 ```
