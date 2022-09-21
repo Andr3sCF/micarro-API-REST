@@ -1,3 +1,8 @@
+# modulos del node
 node_modules/
 
+# carpeta de produccion
+dist/
+
+#variables de entorno
 .env
