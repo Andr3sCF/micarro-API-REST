@@ -27,13 +27,7 @@ const getCarroParametros = async (req, res) => {
 
 const addCarro = async (req, res) => {
     try{
-        // se crean las constantes que van a venir con la info desde el formulario(json).
         const {idCarro, placa, marca, modelo, color, kilometraje, valorNuevo, valorActual, fechaTecno, fechaSoat, Persona_idPersona, TipoCarro_idTipoCarro} = req.body;
-        //validacion desde el backend para campos vacios
-        if (placa === undefined || marca === undefined){
-            res.status(400).json({message:"placa o modelo vacios, llene los campos"})
-        }
-        
         const carro = {idCarro, placa, marca, modelo, color, kilometraje, valorNuevo, valorActual, fechaTecno, fechaSoat, Persona_idPersona, TipoCarro_idTipoCarro};
         const connection = await getConnection()
         const query = "select count(*) as total from micarro.carro where Persona_idPersona = ?"
@@ -65,7 +59,6 @@ const addCarro = async (req, res) => {
 
 const deleteCarro = async (req, res) => {
     try{        
-        //se obtiene el parametro enviado por la api
         const{ id } = req.params;
         const connection = await getConnection();
         const result = await connection.query("DELETE FROM carro WHERE (idCarro = ?)", id);
@@ -80,9 +73,6 @@ const updateCarro = async (req, res) => {
     try{
         const{ id } = req.params;
         const {idCarro, color, kilometraje, valorNuevo} = req.body;
-        if (color === undefined || kilometraje === undefined || valorNuevo === undefined){
-            res.status(400).json({message:"campos vacios, llene todos los campos"})
-        }
         const personas = {idCarro, color, kilometraje, valorNuevo};
         const connection = await getConnection();
         await connection.query(" UPDATE carro SET ? WHERE idCarro = ?", [personas, id]);  
