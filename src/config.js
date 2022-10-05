@@ -1,5 +1,6 @@
 import { config } from "dotenv"
 
+/* Setting up the database connection. */
 config()
 
 export default {

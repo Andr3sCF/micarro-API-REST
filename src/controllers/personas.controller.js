@@ -1,6 +1,11 @@
 import { getConnection } from "../database/database"
 
-//agregar personas
+/**
+ * It takes the data from the request body, creates an object with the data, and then inserts that
+ * object into the database like a persona.
+ * @param req - request
+ * @param res - the response object
+ */
 const addPersonas = async (req, res) => {
     try{
         const {idPersona, numeroDocumento, nombre, apellido, fechaNacimiento, correo, direccion, telefono, foto, TipoDoc_idTipoDoc, Estado_idEstado} = req.body;
@@ -20,7 +25,12 @@ const addPersonas = async (req, res) => {
     }
     
 };
-//modificar  persona
+/**
+ * It takes the id of the person to be updated from the request parameters, and the rest of the data
+ * from the request body, and then updates the person in the database with the new data.
+ * @param req - request
+ * @param res - the response object
+ */
 const updatePersonas = async (req, res) => {
     try{
         const{ id } = req.params;
@@ -34,6 +44,11 @@ const updatePersonas = async (req, res) => {
             .send(error.message)
     }
 };
+/**
+ * It's a function that disables a person in the database.
+ * @param req - request
+ * @param res - the response object
+ */
 const disablePersonas = async (req, res) => {
     try{
 
@@ -54,6 +69,13 @@ const disablePersonas = async (req, res) => {
     }
 };
 //buscar en bd
+/**
+ * It's an async function that gets a connection to the database, then queries the database for all the
+ * rows in the persona table, then sends the result as a JSON object.
+ * @param req - The request object. This object represents the HTTP request and has properties for the
+ * request query string, parameters, body, HTTP headers, and so on.
+ * @param res - The response object.
+ */
 const getPersonas = async (req, res) => {
 
     try{
@@ -65,7 +87,6 @@ const getPersonas = async (req, res) => {
             .send(error.message)
     }
 };
-//buscar en bd por parametros
 const getPersonaParametros = async (req, res) => {
     try{
         const{ numeroDocumento } = req.params;
@@ -78,6 +99,12 @@ const getPersonaParametros = async (req, res) => {
     }
 };
 //eliminar una persona
+/**
+ * It deletes a row from the database table 'persona' where the idPersona column matches the id
+ * parameter passed in the request.
+ * @param req - The request object.
+ * @param res - The response object.
+ */
 const deletePersonas = async (req, res) => {
     try{        
         const{ id } = req.params;

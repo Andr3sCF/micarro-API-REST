@@ -1,5 +1,6 @@
 const {check} = require(`express-validator`)
 const { validateResult } = require('../helpers/validate.helper')
+/* The above code is validating the input of the user. */
 const validateCreate  = [
 
     check(`placa`)
@@ -16,12 +17,21 @@ const validateCreate  = [
         .custom((value, { req }) => {
             var date = new Date()
             var year = date.getFullYear()+1
-            console.log(year)
-            if (value < 2008) {
-                throw new Error('el modelo del vehiculo debe ser del 2008 en adelante')
+            if (value < 2012) {
+                throw new Error('el modelo del vehiculo debe ser del 2012 en adelante')
             }
             if(value > year){
                 throw new Error('el modelo es mayor al ultimo año de produccion')
+            }
+            return true
+        }),
+    check(`kilometraje`)
+        .exists()
+        .custom((value, { req }) => {
+            if (value < 0) {
+                throw new Error('debe ser 0 Km o mayor')
+            }else if (value > 550000){
+                throw new Error('cambie ese pedazo de tiesto')
             }
             return true
         }),

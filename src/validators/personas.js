@@ -1,6 +1,7 @@
 const {check} = require(`express-validator`)
 const { validateResult } = require('../helpers/validate.helper')
 
+/* A validation of the data that is sent to the server. */
 const validateCreate  = [
 
     check(`numeroDocumento`)
