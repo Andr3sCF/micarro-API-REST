@@ -1,3 +1,4 @@
+import morgan from "morgan"
 import { getConnection } from "../database/database"
 
 const ejecutarBD = async(sql, params1) =>{
@@ -82,6 +83,107 @@ function calcularDep(valor, modelo, porcentaje1, porcentaje2, km){
         return valorActual
     }
 }
+
+
+
+const fechaT = async (id) => {
+    const listaFecha = async(params)=>{
+
+        const query= "SELECT fechaTecno AS tecno, modelo as modelo, placa as placa  FROM micarro.carro WHERE Persona_idPersona = ?"
+        params = id
+        var date = new Date()
+        const year = date.getFullYear()
+        const mes = date.getMonth()+1
+        const [rows, fields] = await ejecutarBD(query, params)
+        var fechas = []
+        var j = 0
+
+        rows.forEach(i =>{
+            if(((year + 1) - i.modelo) > 5){        
+                console.log(i.modelo)
+                let tec = i.tecno.split('-')
+                let tecnoYear = year - parseInt(tec[0]) 
+                let tecnoMes = parseInt(tec[1]) 
+        
+                if (tecnoYear == 0 && (tecnoMes - mes) == 0){
+        
+                    var msg = "Estas al dia con tu tecno!"
+                    fechas[j] = msg
+                    j++
+        
+                }else if(tecnoYear > 1){
+                    var msg = "Ponte al dia con la tecno llevas "+ tecnoYear +" años sin tecno: "+ i.placa
+                    fechas[j] = msg
+                    j++
+                        
+                }else if(tecnoYear == 1 && tecnoMes == mes){
+                    var msg = "Este mes tienes que hacer el cambio de tu tecno mecanica: "+ i.placa
+                    fechas[j] = msg
+                    j++
+                }
+            }else{
+                var msg = "Los vehiculos menores a 5  años de antiguedad no necesitan Tecno: " + i.placa
+                fechas[j] = msg
+                j++
+            }
+            
+
+
+        })
+        return fechas
+
+
+    }
+    return listaFecha()
+
+}
+const fechaS = async (id) => {
+    const listaFecha = async(params)=>{
+
+        const query= "SELECT fechaSoat AS soat, placa as placa  FROM micarro.carro WHERE Persona_idPersona = ?"
+        params = id
+        var date = new Date()
+        const year = date.getFullYear()
+        const mes = date.getMonth()+1
+        const [rows, fields] = await ejecutarBD(query, params)
+        var fechas = []
+        var j = 0
+
+        rows.forEach(i =>{      
+                let tec = i.soat.split('-')
+                let soatYear = year - parseInt(tec[0]) 
+                let soatMes = parseInt(tec[1]) 
+        
+                if (soatYear == 0 && (soatMes - mes) == 0){
+        
+                    var msg = "Estas al dia con tu SOAT!"
+                    fechas[j] = msg
+                    j++
+        
+                }else if(soatYear > 1){
+                    var msg = "Ponte al dia con el SOAT llevas si el "+ soatYear +" años: "+ i.placa
+                    fechas[j] = msg
+                    j++
+                        
+                }else if(soatYear == 1 && soatMes == mes){
+                    var msg = "Este mes tienes que renovar tu Soat: "+ i.placa
+                    fechas[j] = msg
+                    j++
+                }
+            
+
+
+        })
+        return fechas
+
+
+    }
+    return listaFecha()
+
+}
+
+
+
 const devaluacion = async (id) => {
 
     const listadoDeva = async (params) => {    
@@ -92,7 +194,6 @@ const devaluacion = async (id) => {
         const [rows, fields] = await ejecutarBD(query, params)
         var carros =  []
         var j = 0
-        console.log(params)
         rows.forEach(i => {
             const placa = i.placa
             const valor = i.valorNuevo
@@ -188,5 +289,7 @@ export const methods = {
     devaluacion,
     add,
     del,
+    fechaT,
+    fechaS,
 
 };

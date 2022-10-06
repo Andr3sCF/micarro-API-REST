@@ -10,7 +10,8 @@ const getCars = async (req, res) => {
         res.status(500)
             .send(error.message)
     }
-};
+}
+
 const getCarroParametros = async (req, res) => {
     try{
         const{ id } = req.params
@@ -20,7 +21,8 @@ const getCarroParametros = async (req, res) => {
         res.status(500)
             .send(error.message)
     }
-};
+}
+
 const picoPlaca = async (req, res) => {
     try{
         var date = new Date()
@@ -37,7 +39,8 @@ const picoPlaca = async (req, res) => {
         res.status(500)
             .send(error.message)
     }
-};
+}
+
 const devaluacion = async (req, res) => {
     try{
         const{ id } = req.params
@@ -48,7 +51,8 @@ const devaluacion = async (req, res) => {
         res.status(500)
             .send(error.message)
     }
-};
+}
+
 const addCarro = async (req, res) => {
     try{
         const {idCarro, placa, marca, modelo, color, kilometraje, valorNuevo, fechaCambioAceite, fechaTecno, fechaSoat, Persona_idPersona, TipoCarro_idTipoCarro} = req.body
@@ -61,7 +65,8 @@ const addCarro = async (req, res) => {
             .send(error.message)
     }
     
-};
+}
+
 const deleteCarro = async (req, res) => {
     try{   
         const{ id } = req.params
@@ -71,7 +76,37 @@ const deleteCarro = async (req, res) => {
         res.status(500)
         .send(error.message)
     }
-};
+}
+
+const fechaTecno =  async (req, res) =>{
+
+    try{
+        const{id} = req.params
+        const result = await service.fechaT(id)
+        res.json(result)
+    }catch(error){
+        res.status(500)
+        .send(error.message)
+
+    }
+
+
+}
+const fechaSoat =  async (req, res) =>{
+
+    try{
+        const{id} = req.params
+        const result = await service.fechaS(id)
+        res.json(result)
+    }catch(error){
+        res.status(500)
+        .send(error.message)
+
+    }
+
+
+}
+
 const updateCarro = async (req, res) => {
     try{
         const{ id } = req.params;
@@ -83,7 +118,8 @@ const updateCarro = async (req, res) => {
         res.status(500)
             .send(error.message)
     }
-};
+}
+
 
 export const methods = {
     getCars,
@@ -92,5 +128,7 @@ export const methods = {
     deleteCarro,
     updateCarro,
     picoPlaca,
-    devaluacion
+    devaluacion,
+    fechaTecno,
+    fechaSoat
 };

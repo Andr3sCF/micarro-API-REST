@@ -10,6 +10,10 @@ router.get("/findall", carController.getCars)
     .put("/update/:id", carController.updateCarro)
     .get("/placa/:id", carController.picoPlaca)
     .get("/devaluacion/:id", carController.devaluacion)
+    .get("/soat/:id", carController.fechaSoat)
+    .get("/tecno/:id", carController.fechaTecno)
+
+
 
 
 
