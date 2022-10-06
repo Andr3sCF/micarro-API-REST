@@ -51,8 +51,8 @@ const devaluacion = async (req, res) => {
 };
 const addCarro = async (req, res) => {
     try{
-        const {idCarro, placa, marca, modelo, color, kilometraje, valorNuevo, fechaCambioAceite, fechaTecno, fechaSoat, Persona_idPersona, TipoCarro_idTipoCarro} = req.body;
-        const carro = {idCarro, placa, marca, modelo, color, kilometraje, valorNuevo, fechaCambioAceite, fechaTecno, fechaSoat, Persona_idPersona, TipoCarro_idTipoCarro};
+        const {idCarro, placa, marca, modelo, color, kilometraje, valorNuevo, fechaCambioAceite, fechaTecno, fechaSoat, Persona_idPersona, TipoCarro_idTipoCarro} = req.body
+        const carro = {idCarro, placa, marca, modelo, color, kilometraje, valorNuevo, fechaCambioAceite, fechaTecno, fechaSoat, Persona_idPersona, TipoCarro_idTipoCarro}
         const [result] = await service.add(Persona_idPersona, carro)
         res.json(result)
 

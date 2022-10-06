@@ -16,11 +16,11 @@ const app = express();
  app.use(express.json());
 
 /* Importing the routes from the routes folder. */
- app.use("/api/personas", personasRoutes);
- app.use("/api/permisos", permisosRoutes);
- app.use("/api/carros", carRoutes);
+ app.use("/api/personas", personasRoutes)
+ app.use("/api/permisos", permisosRoutes)
+ app.use("/api/carros", carRoutes)
 
 
  
-export default app;
+export default app
 

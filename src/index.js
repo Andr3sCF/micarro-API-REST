@@ -5,7 +5,7 @@ import app from "./app"
  * the app.get function.
  */
 const main = () => {
-    app.listen(app.get("port"));
-    console.log(`Server on port ${app.get("port")}`);
+    app.listen(app.get("port"))
+    console.log(`Server on port ${app.get("port")}`)
 };
 main();

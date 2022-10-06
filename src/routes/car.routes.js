@@ -1,10 +1,7 @@
-/* Importing the router, the controller and the validator. */
-import { Router } from "express";
+import { Router } from "express"
 import {methods as carController}  from "./../controllers/car.controller"
 const { validateCreate } = require('../validators/carro')
 
-
-/* A router that is used to route the request to the controller. */
 const router = Router();
 router.get("/findall", carController.getCars)
     .get("/find/:id", carController.getCarroParametros)

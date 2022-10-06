@@ -3,7 +3,6 @@ import {methods as personasController}  from "./../controllers/personas.controll
 const { validateCreate } = require('../validators/personas')
 
 const router = Router();
-//se nombran las rutas que se deseen manejar por la api.
 router.post("/add", validateCreate, personasController.addPersonas)
     .get("/findall", personasController.getPersonas)
     .get("/find/:numeroDocumento", personasController.getPersonaParametros)

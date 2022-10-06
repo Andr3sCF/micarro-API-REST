@@ -11,9 +11,9 @@ const ejecutarBD = async(sql, params1) =>{
                     return reject(error)
                 }
                 return resolve([rows])
-            });
-        });
-    };
+            })
+        })
+    }
     return doQuery()
 }
 
