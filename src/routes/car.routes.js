@@ -12,7 +12,7 @@ router.get("/findall", carController.getCars)
     .delete("/delete/:id", carController.deleteCarro)
     .put("/update/:id", carController.updateCarro)
     .get("/placa/:id", carController.picoPlaca)
-    .get("/devaluacion/:Persona_idPersona", carController.devaluacion)
+    .get("/devaluacion/:id", carController.devaluacion)
 
 
 
