@@ -14,7 +14,7 @@ router.get("/findall", carController.getCars)
     .get("/tecno/:id", carController.fechaTecno)
 
 
-
+// validator fecha de soat y tecno mecanica
 
 
 export default router;

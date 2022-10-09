@@ -151,26 +151,45 @@ const fechaS = async (id) => {
 
         rows.forEach(i =>{      
                 let tec = i.soat.split('-')
-                let soatYear = year - parseInt(tec[0]) 
+                let añoFaltante = year - parseInt(tec[0]) 
                 let soatMes = parseInt(tec[1]) 
         
-                if (soatYear == 0 && (soatMes - mes) == 0){
+                if (añoFaltante == 0 && (soatMes - mes) == 0||soatMes < mes){
         
                     var msg = "Estas al dia con tu SOAT!"
                     fechas[j] = msg
                     j++
         
-                }else if(soatYear > 1){
-                    var msg = "Ponte al dia con el SOAT llevas si el "+ soatYear +" años: "+ i.placa
+                }
+                else if(añoFaltante == 0 && soatMes > mes){
+                    soatMes-mes
+                    var msg = "La fecha de renovacion no puede ser mayor a la fecha actual"
+                    fechas[j] = msg
+                    j++
+                }else if(añoFaltante > 1){
+                    var msg = "CUIDADO recuerda actualizar....., llevas sin el soat "+ añoFaltante +" años: "+ i.placa
                     fechas[j] = msg
                     j++
                         
-                }else if(soatYear == 1 && soatMes == mes){
+                }
+                else if (añoFaltante == 0 && soatMes < mes){
+                    var mesFalt = (12-mes)+soatMes
+                    var msg = "Faltan "+ mesFalt +" meses para el vencimiento del SOAT: "+ i.placa
+                    fechas[j] = msg
+                    j++
+                }else if(añoFaltante == 1 && soatMes == mes){
                     var msg = "Este mes tienes que renovar tu Soat: "+ i.placa
                     fechas[j] = msg
                     j++
+                }else if (añoFaltante == 1 && soatMes < mes){
+                    var msg = "CUIDADO recuerda actualizar....., llevas sin el soat "+ (mes-soatMes) +" meses: "+ i.placa
+                    fechas[j] = msg
+                    j++
+                }else if(añoFaltante == 1 && soatMes > mes){
+                    var msg = "Faltan "+ (soatMes-mes) +" meses para el vencimiento del SOAT: "+ i.placa
+                    fechas[j] = msg
+                    j++
                 }
-            
 
 
         })
